@@ -39,10 +39,10 @@ public class MailServiceImpl implements MailService {
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
             // Chỉ định email người gửi
-            helper.setFrom("kienphatanh@gmail.com", "A&K Cinema Ticket");
+            helper.setFrom("huynhthingocanh2008@gmail.com", "HNA CINEMA Ticket");
             
             helper.setTo(order.getUser().getEmail());
-            helper.setSubject("A&K CINEMA - VÉ ĐIỆN TỬ XÁC NHẬN # " + order.getId());
+            helper.setSubject("HNA CINEMA - VÉ ĐIỆN TỬ XÁC NHẬN # " + order.getId());
 
             NumberFormat vnFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -109,7 +109,7 @@ public class MailServiceImpl implements MailService {
             content.append("<div style='max-width: 480px; margin: 0 auto; background-color: #0b0b0f; border: 1px solid rgba(220,38,38,0.15); border-radius: 32px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);'>");
             
             content.append("<div style='background: linear-gradient(135deg, #111, #1e050a); padding: 35px 25px; text-align: center; border-bottom: 2px dashed #050507;'>");
-            content.append("<div style='font-size: 10px; font-weight: 900; letter-spacing: 5px; color: #dc2626; text-transform: uppercase; margin-bottom: 8px;'>A&K CINEMA TICKET</div>");
+            content.append("<div style='font-size: 10px; font-weight: 900; letter-spacing: 5px; color: #dc2626; text-transform: uppercase; margin-bottom: 8px;'>HNA CINEMA TICKET</div>");
             content.append("<h2 style='margin: 0; font-size: 24px; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: -0.5px;'>Vé Xem Phim Điện Tử</h2>");
             content.append("<div style='display: inline-block; margin-top: 15px; background-color: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.2); padding: 6px 16px; border-radius: 20px; font-size: 11px; color: #ef4444; font-weight: 800; text-transform: uppercase;'>Mã Đơn: #").append(order.getId()).append("</div>");
             content.append("</div>");
@@ -146,8 +146,8 @@ public class MailServiceImpl implements MailService {
             content.append("</div>");
 
             content.append("<div style='background-color: #060608; padding: 20px; text-align: center; color: #3f3f46; font-size: 10px; font-weight: bold;'>");
-            content.append("<p style='margin: 0 0 4px 0;'>HỆ THỐNG ĐIỆN TỬ PHÁT HÀNH VÉ TỰ ĐỘNG A&K CINEMA</p>");
-            content.append("<p style='margin: 0;'>© 2026 A&K Cinema. All rights reserved.</p>");
+            content.append("<p style='margin: 0 0 4px 0;'>HỆ THỐNG ĐIỆN TỬ PHÁT HÀNH VÉ TỰ ĐỘNG HNA CINEMA</p>");
+            content.append("<p style='margin: 0;'>© 2026 HNA CINEMA. All rights reserved.</p>");
             content.append("</div>");
             content.append("</div>");
             content.append("</div>");
@@ -169,9 +169,9 @@ public class MailServiceImpl implements MailService {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-            helper.setFrom("kienphatanh@gmail.com", "A&K Cinema Support");
+            helper.setFrom("huynhthingocanh2008@gmail.com", "HNA CINEMA Support");
             helper.setTo(user.getEmail());
-            helper.setSubject("A&K CINEMA - THÔNG BÁO HỦY SUẤT CHIẾU & ĐỀN BÙ ĐIỂM THƯỞNG");
+            helper.setSubject("HNA CINEMA - THÔNG BÁO HỦY SUẤT CHIẾU & ĐỀN BÙ ĐIỂM THƯỞNG");
 
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -181,7 +181,7 @@ public class MailServiceImpl implements MailService {
             String showDate = showtime.getStartTime().format(dateFormatter);
             String showTime = showtime.getStartTime().format(timeFormatter) + " - " + showtime.getEndTime().format(timeFormatter);
             String roomName = showtime.getRoom() != null ? showtime.getRoom().getName() : "N/A";
-            String cinemaName = showtime.getCinemaItem() != null ? showtime.getCinemaItem().getName() : "Hệ thống A&K Cinema";
+            String cinemaName = showtime.getCinemaItem() != null ? showtime.getCinemaItem().getName() : "Hệ thống HNA CINEMA";
 
             StringBuilder content = new StringBuilder();
             content.append("<div style='background-color: #050507; padding: 40px 15px; font-family: system-ui, -apple-system, sans-serif;'>");
@@ -198,8 +198,8 @@ public class MailServiceImpl implements MailService {
             content.append("<p style='color: #d4d4d8; font-size: 14px; line-height: 1.6;'>Kính gửi quý khách <strong style='color:#fff;'>").append(customerName).append("</strong>,</p>");
 
             String reasonMsg = isSystemAuto 
-                ? "Cinema A&K vô cùng xin lỗi quý khách. Do suất chiếu không đạt đủ số lượng vé tối thiểu để vận hành, hệ thống buộc phải hủy suất chiếu này ạ." 
-                : "Cinema A&K vô cùng xin lỗi quý khách. Do sự cố kỹ thuật đột xuất tại rạp, suất chiếu của quý khách đã buộc phải hủy bỏ.";
+                ? "Cinema HNA vô cùng xin lỗi quý khách. Do suất chiếu không đạt đủ số lượng vé tối thiểu để vận hành, hệ thống buộc phải hủy suất chiếu này ạ." 
+                : "Cinema HNA vô cùng xin lỗi quý khách. Do sự cố kỹ thuật đột xuất tại rạp, suất chiếu của quý khách đã buộc phải hủy bỏ.";
 
             content.append("<p style='color: #d4d4d8; font-size: 14px; line-height: 1.6;'>").append(reasonMsg).append("</p>");
 
@@ -228,7 +228,7 @@ public class MailServiceImpl implements MailService {
 
             // Footer
             content.append("<div style='background-color: #060608; padding: 20px; text-align: center; color: #3f3f46; font-size: 10px; font-weight: bold;'>");
-            content.append("<p style='margin: 0 0 4px 0;'>HỆ THỐNG ĐIỆN TỬ PHÁT HÀNH VÉ TỰ ĐỘNG A&K CINEMA</p>");
+            content.append("<p style='margin: 0 0 4px 0;'>HỆ THỐNG ĐIỆN TỬ PHÁT HÀNH VÉ TỰ ĐỘNG HNA CINEMA</p>");
             content.append("<p style='margin: 0;'>Một lần nữa, chúng tôi thành thật xin lỗi vì sự bất tiện này.</p>");
             content.append("</div>");
             content.append("</div>");

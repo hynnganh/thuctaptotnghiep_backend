@@ -20,15 +20,13 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/orders")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*") // 🔥 Cho phép ứng dụng qr-app (port 3001) gọi sang thoải mái không bị chặn CORS
+@CrossOrigin(origins = "*") 
 public class OrderController {
 
     private final OrderService orderService;
 
-    // Đường dẫn trang Frontend mà ông muốn chuyển về sau khi thanh toán
-    //@Value("${frontend.url:https://akcinema.vercel.app}")
-    @Value("${frontend.url:http://localhost:3000}")
-    
+    @Value("${frontend.url:https://hna-cinema.vercel.app}")
+    //@Value("${frontend.url:http://localhost:3000}")
     private String frontendUrl;
 
     @PostMapping
