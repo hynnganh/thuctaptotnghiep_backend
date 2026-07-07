@@ -215,6 +215,14 @@ public class MovieServiceImpl implements MovieService {
                         }
                     }
 
+                    if (rawStatus != null && !rawStatus.isBlank()) {
+                        String cleanStatus = rawStatus.trim().toLowerCase();
+                        if (!cleanStatus.contains("đang chiếu") && !cleanStatus.contains("sắp chiếu") && 
+                            !cleanStatus.contains("ngừng chiếu") && !cleanStatus.contains("đã chiếu")) {
+                            throw new RuntimeException("Trạng thái '" + rawStatus + "' không hợp lệ (Chỉ chấp nhận: Đang chiếu, Sắp chiếu, Ngừng chiếu)");
+                        }
+                    }
+
                     tempResults.add(new RowMovieImportResult(i + 1, title, genreNamesData, rawStatus, "SUCCESS", null));
 
                 } catch (Exception rowError) {
